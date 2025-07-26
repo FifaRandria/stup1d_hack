@@ -1,0 +1,208 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #161f46;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+  transition: all 3s ease-in-out;
+}
+
+body.dark-mode {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0f0f0f);
+  animation: darkPulse 6s infinite alternate;
+}
+
+@keyframes darkPulse {
+  0% {
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0f0f0f);
+  }
+  100% {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #0a0a0a);
+  }
+}
+
+@keyframes subtleShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-1px) rotate(-0.1deg);
+  }
+  75% {
+    transform: translateX(1px) rotate(0.1deg);
+  }
+}
+
+@keyframes shadowGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+      0 0 30px rgba(200, 200, 255, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes mysteriosPulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  min-height: calc(100vh - 40px);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: all 3s ease-in-out;
+}
+
+.container.dark-mode {
+  animation: subtleShake 4s infinite;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  color: #e8eaf0;
+  font-size: clamp(18px, 2.5vw, 24px);
+  padding: 40px;
+  height: 100%;
+  width: 100%;
+  transition: all 3s ease-in-out;
+}
+
+.left-content.dark-mode {
+  color: #d0d0d0;
+  animation: shadowGlow 4s infinite;
+}
+
+.main-title {
+  color: #e8eaf0;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  transition: all 3s ease-in-out;
+}
+
+.main-subtitle {
+  color: #b8c4e8;
+  text-align: center;
+  font-size: clamp(14px, 2vw, 16px);
+  margin-bottom: 2rem;
+  font-style: italic;
+  transition: all 3s ease-in-out;
+}
+
+.main-container {
+  padding: 20px;
+  border: 1px solid rgba(122, 138, 199, 0.3);
+  background: rgba(232, 234, 240, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(122, 138, 199, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 3s ease-in-out;
+}
+
+.appointment-card {
+  padding: 12px 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(122, 138, 199, 0.15);
+  color: #2a3558;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(122, 138, 199, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.appointment-card:hover {
+  transform: scale(1.02);
+}
+
+.appointment-details {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.appointment-time {
+  font-weight: 800;
+  margin: 0 auto;
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: #161f46;
+  transition: all 3s ease-in-out;
+}
+
+.appointment-desc {
+  font-weight: 300;
+  font-size: clamp(12px, 2vw, 14px);
+  color: #2a3558;
+  transition: all 3s ease-in-out;
+}
+
+.appointment-status {
+  color: #161f46;
+  cursor: pointer;
+  font-size: clamp(12px, 2vw, 14px);
+  background: none;
+  border: none;
+  transition: all 0.2s;
+}
+
+.appointment-status:hover {
+  font-weight: 800;
+}
+
+.main-button {
+  padding: 16px 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: clamp(16px, 2.5vw, 18px);
+  background: linear-gradient(135deg, #7a8ac7, #9baddd);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(122, 138, 199, 0.3);
+  transition: all 0.3s ease;
+}
+
+.main-button:hover {
+  background: linear-gradient(135deg, #9baddd, #7a8ac7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(122, 138, 199, 0.4);
+}
+
