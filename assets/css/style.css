@@ -8,6 +8,17 @@ body {
   background: #161f46;
 }
 
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+}
+
+.header-scroll {
+  backdrop-filter: blur(15px);
+}
+
 header span:hover {
   color: #161f46;
 }
@@ -31,4 +42,12 @@ button:hover {
 
 .about {
   color: #161f46;
+}
+
+#meteorCanvas {
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
 }
