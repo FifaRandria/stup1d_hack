@@ -62,6 +62,7 @@ const updateActivitiesList = () => {
     const container = document.getElementById('activities-container');
    
     if (!container ) return;
+    
     if (activities.length === 0) 
     {
         container.innerHTML = '<div class="activity-item p-5 rounded-lg flex justify-between items-center "><div class="flex items-center gap-4"><div "><i class="fas fa-plus text-gray-400"></i></div><div><div class="font-bold text-gray-400">Ajoutez une activité</div><div class="text-sm text-gray-400">Elles apparaîtront ici</div></div></div> </div>';
@@ -87,12 +88,6 @@ const updateActivitiesList = () => {
         </div>
     `).join('');
 };
-
-// const removeActivity = (id) => {
-//     activities = activities.filter(activity => activity.id !== id);
-//     updateActivitiesList();
-//     document.getElementById('validate-btn').disabled = activities.length === 0;
-// };
 
 const removeActivity = (id) => {
   activities = activities.filter(activity => activity.id !== id);
