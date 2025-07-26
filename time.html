@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/time.css" />
+    <title>Horloge Moderne</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-content">
+        <div style="width: 100%; height: 100%">
+          <div class="main-title">Vos rendez-vous du <div id="current-date"> </div></div>
+
+          <div class="main-subtitle">
+            Gérez facilement votre emploi du temps
+          </div>
+
+          <div class="main-container">
+            <div class="appointment-card" id="current-activity-card">
+              <div class="appointment-details">
+                <div class="appointment-time" id="current-activity-time">--:-- --- --:--</div>
+                <div class="appointment-desc"id="current-activity-name">Aucune activite</div>
+              </div>
+              <button class="appointment-status">En cours</button>
+            </div>
+
+             <div class="appointment-card" id="next-activity-card">
+              <div class="appointment-details">
+                <div class="appointment-time" id="next-activity-time">--:-- --- --:--</div>
+                <div class="appointment-desc"id="next-activity-name">En attente</div>
+              </div>
+              <button class="appointment-status">prochaine activite</button>
+            </div>
+            <button class="main-button">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              <span>Ajouter un rendez-vous</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clock-container">
+        <div class="clock">
+          <div class="numbers">
+            <div class="n12">12</div>
+            <div class="n1">1</div>
+            <div class="n2">2</div>
+            <div class="n3">3</div>
+            <div class="n4">4</div>
+            <div class="n5">5</div>
+            <div class="n6">6</div>
+            <div class="n7">7</div>
+            <div class="n8">8</div>
+            <div class="n9">9</div>
+            <div class="n10">10</div>
+            <div class="n11">11</div>
+          </div>
+          <div class="hand hour" id="hour"></div>
+          <div class="hand minute" id="minute"></div>
+          <div class="hand second" id="second"></div>
+          <div class="center"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/time.js"></script>
+    <script src="./assets/js/form.js"></script>
+  </body>
+</html>
