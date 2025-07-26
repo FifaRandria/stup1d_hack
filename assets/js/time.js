@@ -3,6 +3,7 @@ let stopFetching = false;
 document.getElementById('change').addEventListener('click', () => {
   stopFetching = true;
   deactivateDarkMode();
+  document.getElementById("change").style.display = 'hidden';
 });
 
 function fetchapi() 
@@ -72,6 +73,10 @@ function loopFetchUntilStop() {
 }
 
 function activateDarkMode() {
+
+    document.getElementById("homer-modal").style.display = "flex";
+    document.body.classList.add("homer-mode");
+    document.getElementById("homer-sound").play();
 
   document.getElementById('change').style.display = 'block';
 loopFetchUntilStop();

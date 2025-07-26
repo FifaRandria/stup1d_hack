@@ -12,11 +12,9 @@ app = Flask(__name__)
 CORS(app)
 
 phrases = [
-    "Bonjour, je suis une voix rigolote !",
-    "Attention, ceci est un message important.",
-    "Tu as gagné un ticket pour la planète Mars !",
-    "Il est temps de faire une pause café.",
-    "Je chante sous la douche, tu veux écouter ?"
+    "Il est l'heure de te raser comme tout les mois mec",
+    "Tu veux pas faire caca, ca commence vraiment a sentir",
+    "Tu t'es pas douche pendant 6 mois, il est temps maintenant",
 ]
 @app.route("/audio", methods=["GET"])
 def audio():

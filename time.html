@@ -95,7 +95,7 @@
               <button class="appointment-status">Prochaine activité</button>
             </div>
 
-            <button class="main-button" onclick="triggerHomer()">
+            <button class="hidden main-button" onclick="triggerHomer()">
             <button class="main-button" id="launch">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
               <span>Lancer</span>
@@ -103,7 +103,7 @@
           </div>
           
           <div class="btn-container">
-            <button id="change" class="hidden">
+            <button id="change" class="hidden mt-10 py-10 px-5 bg-black text-white w-full rounded-lg">
               Arreter
             </button>
           </div>
@@ -151,20 +151,13 @@
     <script src="./assets/js/time.js"></script>
 <script>
   function triggerHomer() {
-    document.getElementById("homer-modal").style.display = "flex";
-    document.body.classList.add("homer-mode");
-    document.getElementById("homer-sound").play();
+
   }
 
   function closeHomer() {
     document.getElementById("homer-modal").style.display = "none";
     document.body.classList.remove("homer-mode");
   }
-
-  // Homer perturbe tout toutes les 12 secondes 😈
-  setInterval(() => {
-    triggerHomer();
-  }, 16000); // 12 secondes
 </script>
 
   </body>
