@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <link rel="stylesheet" href="./assets/css/time.css" />
+         <link rel="stylesheet" href="./assets/css/tailwind.min.css">
     <title>Horloge Moderne</title>
   </head>
+  <style>
+           .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+  </style>
   <body>
     <div class="container">
       <div class="left-content">
@@ -33,12 +44,19 @@
               </div>
               <button class="appointment-status">prochaine activite</button>
             </div>
-            <button class="main-button">
+            <button class="main-button" id="launch">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
-              <span>Ajouter un rendez-vous</span>
+              <span>Lancer</span>
+            </button>
+          </div>
+          
+          <div class="btn-container">
+            <button id="change" class="hidden">
+              Arreter
             </button>
           </div>
         </div>
+
       </div>
 
       <div class="clock-container">

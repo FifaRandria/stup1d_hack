@@ -191,7 +191,7 @@ body.dark-mode {
   justify-content: center;
   width: 100%;
   font-size: clamp(16px, 2.5vw, 18px);
-  background: linear-gradient(135deg, #7a8ac7, #9baddd);
+  background: linear-gradient(135deg, #0c1c5e, #9baddd);
   color: white;
   font-weight: 800;
   cursor: pointer;

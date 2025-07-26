@@ -1,3 +1,42 @@
+let stopFetching = false;
+
+document.getElementById('change').addEventListener('click', () => {
+  stopFetching = true;
+  deactivateDarkMode();
+});
+
+function fetchapi() 
+{
+  if (stopFetching) return;
+  fetch('http://127.0.0.1:2000/audio')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur de réseau');
+        }
+        return response.blob();  // Récupère la réponse sous forme de Blob
+    })
+    .then(blob => {
+        // Crée une URL locale pour le Blob (qui représente le fichier MP3)
+        const audioUrl = URL.createObjectURL(blob);
+
+        // Crée un élément audio HTML pour lire le fichier MP3
+        const audio = new Audio(audioUrl);
+
+        // Joue le fichier MP3
+        audio.play()
+            .then(() => {
+                console.log('Lecture du fichier MP3 lancée');
+            })
+            .catch(error => {
+                console.error('Erreur lors de la lecture du MP3:', error);
+            });
+    })
+    .catch(error => {
+        console.error('Erreur:', error);  // Gestion des erreurs
+    });
+
+}
+
 function updateClock() {
   const now = new Date();
   const seconds = now.getSeconds();
@@ -20,7 +59,22 @@ function updateClock() {
 }
 
 
+
+function loopFetchUntilStop() {
+  const interval = setInterval(() => {
+    if (stopFetching) {
+      clearInterval(interval); // Arrêter la boucle
+      console.log("Arrêt du fetch automatique.");
+      return;
+    }
+    fetchapi();
+  }, 3000); // Toutes les 2 secondes, modifiable
+}
+
 function activateDarkMode() {
+
+  document.getElementById('change').style.display = 'block';
+loopFetchUntilStop();
   // Ajouter la classe dark-mode à tous les éléments
   document.body.classList.add("dark-mode");
   document.querySelector(".container").classList.add("dark-mode");
@@ -230,110 +284,114 @@ function activateDarkMode() {
   // Programmer le retour à la normale après 10 secondes
   setTimeout(() => {
     deactivateDarkMode();
-  }, 10000);
+  }, 1000);
 }
 
 function deactivateDarkMode() {
-  // Enlever toutes les classes dark-mode
-  document.body.classList.remove("dark-mode");
-  document.querySelector(".container").classList.remove("dark-mode");
-  document.querySelector(".left-content").classList.remove("dark-mode");
-  document.querySelector(".clock").classList.remove("dark-mode");
-  document.querySelector(".numbers").classList.remove("dark-mode");
-  document.querySelector(".center").classList.remove("dark-mode");
-
-  // Aiguilles
-  document.getElementById("hour").classList.remove("dark-mode");
-  document.getElementById("minute").classList.remove("dark-mode");
-  document.getElementById("second").classList.remove("dark-mode");
-
-  // Restaurer le contenu original
-  const title = document.querySelector(".main-title");
-  const subtitle = document.querySelector(".main-subtitle");
-  const container = document.querySelector(".main-container");
-  const button = document.querySelector(".main-button");
-
-  // Restaurer le titre
-  title.innerHTML = "Vos rendez-vous";
-  title.style.color = "#e8eaf0";
-  title.style.textShadow = "";
-  title.style.animation = "";
-  title.style.fontFamily = '"Segoe UI", sans-serif';
-  title.style.letterSpacing = "";
-
-  // Restaurer le sous-titre
-  subtitle.innerHTML = "Gérez facilement votre emploi du temps";
-  subtitle.style.color = "#b8c4e8";
-  subtitle.style.animation = "";
-  subtitle.style.fontFamily = '"Segoe UI", sans-serif';
-  subtitle.style.fontSize = "clamp(14px, 2vw, 16px)";
-
-  // Restaurer le conteneur
-  container.style.background = "rgba(232, 234, 240, 0.95)";
-  container.style.border = "1px solid rgba(122, 138, 199, 0.3)";
-  container.style.boxShadow = "0 4px 15px rgba(122, 138, 199, 0.2)";
-  container.style.backdropFilter = "";
-
-  // Restaurer les cartes
-  const cards = document.querySelectorAll(".appointment-card");
-  const originalAppointments = [
-    { time: "15:56 --- 16:30", desc: "Pause déjeuner", status: "À venir" },
-    { time: "17:00 --- 18:15", desc: "Réunion équipe", status: "À venir" },
-    { time: "19:30 --- 21:00", desc: "Cours de sport", status: "À venir" },
-    { time: "21:30 --- 22:00", desc: "Lecture", status: "Optionnel" },
-  ];
-
-  cards.forEach((card, index) => {
-    card.style.background =
+  if (stopFetching)
+  {
+    // Enlever toutes les classes dark-mode
+    document.body.classList.remove("dark-mode");
+    document.querySelector(".container").classList.remove("dark-mode");
+    document.querySelector(".left-content").classList.remove("dark-mode");
+    document.querySelector(".clock").classList.remove("dark-mode");
+    document.querySelector(".numbers").classList.remove("dark-mode");
+    document.querySelector(".center").classList.remove("dark-mode");
+    
+    // Aiguilles
+    document.getElementById("hour").classList.remove("dark-mode");
+    document.getElementById("minute").classList.remove("dark-mode");
+    document.getElementById("second").classList.remove("dark-mode");
+    
+    // Restaurer le contenu original
+    const title = document.querySelector(".main-title");
+    const subtitle = document.querySelector(".main-subtitle");
+    const container = document.querySelector(".main-container");
+    const button = document.querySelector(".main-button");
+    
+    // Restaurer le titre
+    title.innerHTML = "Vos rendez-vous";
+    title.style.color = "#e8eaf0";
+    title.style.textShadow = "";
+    title.style.animation = "";
+    title.style.fontFamily = '"Segoe UI", sans-serif';
+    title.style.letterSpacing = "";
+    
+    // Restaurer le sous-titre
+    subtitle.innerHTML = "Gérez facilement votre emploi du temps";
+    subtitle.style.color = "#b8c4e8";
+    subtitle.style.animation = "";
+    subtitle.style.fontFamily = '"Segoe UI", sans-serif';
+    subtitle.style.fontSize = "clamp(14px, 2vw, 16px)";
+    
+    // Restaurer le conteneur
+    container.style.background = "rgba(232, 234, 240, 0.95)";
+    container.style.border = "1px solid rgba(122, 138, 199, 0.3)";
+    container.style.boxShadow = "0 4px 15px rgba(122, 138, 199, 0.2)";
+    container.style.backdropFilter = "";
+    
+    // Restaurer les cartes
+    const cards = document.querySelectorAll(".appointment-card");
+    const originalAppointments = [
+      { time: "15:56 --- 16:30", desc: "Pause déjeuner", status: "À venir" },
+      { time: "17:00 --- 18:15", desc: "Réunion équipe", status: "À venir" },
+      { time: "19:30 --- 21:00", desc: "Cours de sport", status: "À venir" },
+      { time: "21:30 --- 22:00", desc: "Lecture", status: "Optionnel" },
+    ];
+    
+    cards.forEach((card, index) => {
+      card.style.background =
       index === 3 ? "rgba(184, 196, 232, 0.2)" : "rgba(122, 138, 199, 0.15)";
-    card.style.border = "";
-    card.style.boxShadow = "0 2px 8px rgba(122, 138, 199, 0.15)";
-    card.style.backdropFilter = "";
-    card.style.animation = "";
-
-    const timeEl = card.querySelector(".appointment-time");
-    const descEl = card.querySelector(".appointment-desc");
-    const statusEl = card.querySelector(".appointment-status");
-
-    timeEl.style.color = "#161f46";
-    timeEl.style.textShadow = "";
-    timeEl.style.fontFamily = '"Segoe UI", sans-serif';
-
-    descEl.style.color = "#2a3558";
-    descEl.style.fontFamily = '"Segoe UI", sans-serif';
-    descEl.style.fontSize = "clamp(12px, 2vw, 14px)";
-
-    statusEl.style.color = index === 3 ? "#7a8ac7" : "#161f46";
-    statusEl.style.fontFamily = '"Segoe UI", sans-serif';
-    statusEl.style.fontSize = "clamp(12px, 2vw, 14px)";
-    statusEl.style.textTransform = "";
-    statusEl.style.letterSpacing = "";
-
-    if (originalAppointments[index]) {
-      timeEl.innerHTML = originalAppointments[index].time;
-      descEl.innerHTML = originalAppointments[index].desc;
-      statusEl.innerHTML = originalAppointments[index].status;
-    }
-  });
-
-  // Restaurer le bouton
-  button.style.background = "linear-gradient(135deg, #7a8ac7, #9baddd)";
-  button.style.boxShadow = "0 4px 15px rgba(122, 138, 199, 0.3)";
-  button.style.color = "white";
-  button.innerHTML =
-    '<i class="fa fa-plus-circle" aria-hidden="true"></i><span>Ajouter un rendez-vous</span>';
-  button.style.fontFamily = '"Segoe UI", sans-serif';
-  button.style.letterSpacing = "";
-  button.style.animation = "";
-
-  // Nettoyer les effets de fond
-  document.body.style.animation = "";
-
-  // Programmer la prochaine activation après 15 secondes
-  setTimeout(activateDarkMode, 15000);
+      card.style.border = "";
+      card.style.boxShadow = "0 2px 8px rgba(122, 138, 199, 0.15)";
+      card.style.backdropFilter = "";
+      card.style.animation = "";
+      
+      const timeEl = card.querySelector(".appointment-time");
+      const descEl = card.querySelector(".appointment-desc");
+      const statusEl = card.querySelector(".appointment-status");
+      
+      timeEl.style.color = "#161f46";
+      timeEl.style.textShadow = "";
+      timeEl.style.fontFamily = '"Segoe UI", sans-serif';
+      
+      descEl.style.color = "#2a3558";
+      descEl.style.fontFamily = '"Segoe UI", sans-serif';
+      descEl.style.fontSize = "clamp(12px, 2vw, 14px)";
+      
+      statusEl.style.color = index === 3 ? "#7a8ac7" : "#161f46";
+      statusEl.style.fontFamily = '"Segoe UI", sans-serif';
+      statusEl.style.fontSize = "clamp(12px, 2vw, 14px)";
+      statusEl.style.textTransform = "";
+      statusEl.style.letterSpacing = "";
+      
+      if (originalAppointments[index]) {
+        timeEl.innerHTML = originalAppointments[index].time;
+        descEl.innerHTML = originalAppointments[index].desc;
+        statusEl.innerHTML = originalAppointments[index].status;
+      }
+    });
+    
+    // Restaurer le bouton
+    button.style.background = "linear-gradient(135deg, #7a8ac7, #9baddd)";
+    button.style.boxShadow = "0 4px 15px rgba(122, 138, 199, 0.3)";
+    button.style.color = "white";
+    button.innerHTML =
+    '<i class="fa fa-plus-circle" aria-hidden="true"></i><span>Lancer</span>';
+    button.style.fontFamily = '"Segoe UI", sans-serif';
+    button.style.letterSpacing = "";
+    button.style.animation = "";
+    
+    // Nettoyer les effets de fond
+    document.body.style.animation = "";
+    
+    // Programmer la prochaine activation après 15 secondes
+    // setTimeout(activateDarkMode, 15000);
+    // stopFetching = false;
+  }
 }
-
-
+  
+  
 function createFloatingParticles() {
   for (let i = 0; i < 15; i++) {
     setTimeout(() => {
@@ -392,7 +450,9 @@ function createFloatingParticles() {
 }
 
 // Démarrer la transformation après 15 secondes
-setTimeout(activateDarkMode, 15000);
 
-setInterval(updateClock, 1000);
-updateClock();
+document.getElementById('launch').addEventListener('click', function() {
+  setTimeout(activateDarkMode, 15000);
+  setInterval(updateClock, 1000);
+  updateClock();
+}); 
