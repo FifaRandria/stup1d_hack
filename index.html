@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/tailwind.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Document</title>
+  </head>
+  <body class="text-white">
+    <header
+      class="top-0 flex justify-between py-3 px-7 text-lg items-center backdrop-blur-sm bg-white/10 transition-all duration-300"
+      id="mainHeader"
+    >
+      <div class="transition-all duration-100">
+        <a href="#about">About</a>
+      </div>
+      <div class="font-bold hover:font-extrabold transition-all duration-100">
+        <a href="#">Not o'clock</a>
+      </div>
+      <div
+        class="px-3 flex flex-row gap-3 border border-white rounded-2xl items-center hover:text-[#161f46] hover:bg-white transition-all duration-200 cursor-pointer hover:scale-105"
+      >
+        <span> Try out </span>
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+      </div>
+    </header>
+    <main>
+      <section
+        class="home-view h-screen w-screen flex flex-col items-center justify-center text-center py-0 px-5"
+      >
+        <canvas
+          id="meteorCanvas"
+          class="absolute top-0 left-0 w-full h-full z-0"
+        ></canvas>
+        <div class="mb-16 max-w-2xl">
+          <div
+            class="text-4xl md:text-5xl font-extrabold mb-6"
+            data-aos="zoom-in"
+            data-aos-duration="1500"
+          >
+            Welcome to our new experiences
+          </div>
+          <div
+            class="text-lg mb-12"
+            data-aos="zoom-in"
+            data-aos-duration="1500"
+          >
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Dignissimos aliquam, odio, repellendus voluptatem, doloribus impedit
+            quaerat sapiente totam aspernatur consequuntur assumenda possimus
+            laboriosam. Error, facilis at suscipit quae sequi corporis.
+          </div>
+        </div>
+        <div>
+          <button
+            class="px-12 py-4 bg-white rounded-full font-bold hover:text-white hover:bg-[#161f46] cursor-pointer hover:px-16 hover:scale-105 transition-all duration-300"
+            data-aos="fade-up"
+            data-aos-duration="3000"
+          >
+            <a href="form.html"> Commencer </a>
+          </button>
+        </div>
+      </section>
+      <section id="about" class="about w-screen h-screen">
+        <div class="flex flex-col justify-center text-center">
+          <div class="font-bold text-2xl mt-40 mb-20 text-white">About</div>
+          <div
+            class="text-lg md:px-16 px-20 lg:px-40 grid lg:grid-cols-4 md:grid-cols-3 flex-col md:gap-5 gap-7 pb-10"
+          >
+            <div
+              class="p-7 border-2 bg-white text-[#161f46] flex flex-col gap-5 justify-center rounded-md"
+              data-aos="slide-up"
+              data-aos-duration="1000"
+            >
+              <img
+                src="./assets/svg/tag-svgrepo-com.svg"
+                class="w-20 h-20 mx-auto"
+                alt=""
+              />
+              <span class="font-bold text-xl uppercase"> Personal AI </span>
+              <div class="font-light text-base">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum,
+                vero, laboriosam recusandae iste repellat quos maiores aperiam
+                iusto, saepe incidunt numquam
+              </div>
+            </div>
+            <div
+              class="p-7 border-2 bg-white text-[#161f46] flex flex-col gap-5 justify-center rounded-md"
+              data-aos="slide-up"
+              data-aos-duration="1000"
+            >
+              <img
+                src="./assets/svg/tag-svgrepo-com.svg"
+                class="w-20 h-20 mx-auto"
+                alt=""
+              />
+              <span class="font-bold text-xl uppercase"> Personal AI </span>
+              <div class="font-light text-base">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum,
+                vero, laboriosam recusandae iste repellat quos maiores aperiam
+                iusto, saepe incidunt numquam
+              </div>
+            </div>
+            <div
+              class="p-7 border-2 bg-white text-[#161f46] flex flex-col gap-5 justify-center rounded-md"
+              data-aos="slide-up"
+              data-aos-duration="1000"
+            >
+              <img
+                src="./assets/svg/tag-svgrepo-com.svg"
+                class="w-20 h-20 mx-auto"
+                alt=""
+              />
+              <span class="font-bold text-xl uppercase"> Personal AI </span>
+              <div class="font-light text-base">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum,
+                vero, laboriosam recusandae iste repellat quos maiores aperiam
+                iusto, saepe incidunt numquam
+              </div>
+            </div>
+            <div
+              class="p-7 border-2 bg-white text-[#161f46] flex flex-col gap-5 justify-center rounded-md"
+              data-aos="slide-up"
+              data-aos-duration="1000"
+            >
+              <img
+                src="./assets/svg/tag-svgrepo-com.svg"
+                class="w-20 h-20 mx-auto"
+                alt=""
+              />
+              <span class="font-bold text-xl uppercase"> Personal AI </span>
+              <div class="font-light text-base">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum,
+                vero, laboriosam recusandae iste repellat quos maiores aperiam
+                iusto, saepe incidunt numquam
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>

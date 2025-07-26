@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: "Montserrat";
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #161f46;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+}
+
+.header-scroll {
+  backdrop-filter: blur(15px);
+}
+
+header span:hover {
+  color: #161f46;
+}
+
+button {
+  color: #161f46;
+}
+
+button:hover {
+  color: white;
+  background: #161f46;
+  padding-left: 64px;
+  padding-right: 64px;
+  scale: 105%;
+}
+
+.home-view {
+  background: url("../images/bg.png") no-repeat center center;
+  background-size: cover;
+}
+
+.about {
+  color: #161f46;
+}
+
+#meteorCanvas {
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+}
