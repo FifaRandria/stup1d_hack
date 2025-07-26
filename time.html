@@ -6,34 +6,85 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <link rel="stylesheet" href="./assets/css/time.css" />
     <title>Horloge Moderne</title>
+    <style>
+      body.homer-mode {
+        background-color: #fff3cd;
+        transition: background-color 0.5s;
+        animation: shake 0.5s infinite;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-5px); }
+        40% { transform: translateX(5px); }
+        60% { transform: translateX(-5px); }
+        80% { transform: translateX(5px); }
+      }
+
+      .homer-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .homer-box {
+        background: #ffeb3b;
+        color: #000;
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .homer-box img {
+        width: 100px;
+        margin-bottom: 1rem;
+      }
+
+      .homer-box button {
+        margin-top: 1rem;
+        padding: 0.75rem 1.5rem;
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
+      <!-- UI principale -->
       <div class="left-content">
         <div style="width: 100%; height: 100%">
-          <div class="main-title">Vos rendez-vous du <div id="current-date"> </div></div>
-
-          <div class="main-subtitle">
-            Gérez facilement votre emploi du temps
+          <div class="main-title">
+            Vos rendez-vous du <div id="current-date"></div>
           </div>
+          <div class="main-subtitle">Gérez facilement votre emploi du temps</div>
 
           <div class="main-container">
             <div class="appointment-card" id="current-activity-card">
               <div class="appointment-details">
                 <div class="appointment-time" id="current-activity-time">--:-- --- --:--</div>
-                <div class="appointment-desc"id="current-activity-name">Aucune activite</div>
+                <div class="appointment-desc" id="current-activity-name">Aucune activité</div>
               </div>
               <button class="appointment-status">En cours</button>
             </div>
 
-             <div class="appointment-card" id="next-activity-card">
+            <div class="appointment-card" id="next-activity-card">
               <div class="appointment-details">
                 <div class="appointment-time" id="next-activity-time">--:-- --- --:--</div>
-                <div class="appointment-desc"id="next-activity-name">En attente</div>
+                <div class="appointment-desc" id="next-activity-name">En attente</div>
               </div>
-              <button class="appointment-status">prochaine activite</button>
+              <button class="appointment-status">Prochaine activité</button>
             </div>
-            <button class="main-button">
+
+            <button class="main-button" onclick="triggerHomer()">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
               <span>Ajouter un rendez-vous</span>
             </button>
@@ -65,7 +116,30 @@
       </div>
     </div>
 
+    <!-- Modal Homer -->
+    <div id="homer-modal" class="homer-modal" style="display: none">
+      <div class="homer-box">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png" alt="Homer" />
+        <h2>Je t'avais prévenu, tête de donut !</h2>
+        <p>Tu crois vraiment que tu vas gérer ta vie sans moi ? D'oh !</p>
+        <button onclick="closeHomer()">OK Chef Homer...</button>
+      </div>
+    </div>
+
+    <audio id="homer-sound" src="https://www.myinstants.com/media/sounds/homer-simpson-doh.mp3"></audio>
+
     <script src="./assets/js/time.js"></script>
-    <script src="./assets/js/form.js"></script>
+    <script>
+      function triggerHomer() {
+        document.getElementById("homer-modal").style.display = "flex";
+        document.body.classList.add("homer-mode");
+        document.getElementById("homer-sound").play();
+      }
+
+      function closeHomer() {
+        document.getElementById("homer-modal").style.display = "none";
+        document.body.classList.remove("homer-mode");
+      }
+    </script>
   </body>
 </html>
