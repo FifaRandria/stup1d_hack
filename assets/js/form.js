@@ -1,4 +1,11 @@
 let activities = [];
+
+
+const storedActivities = localStorage.getItem('activities');
+if (storedActivities) {
+    activities = JSON.parse(storedActivities);
+}
+
 let currentTime = new Date();
 let clockInterval;
 let scheduleInterval;
@@ -40,6 +47,7 @@ const showPage = (pageId) => {
     };
 
     activities.push(activity);
+    localStorage.setItem('activities', JSON.stringify(activities));
     updateActivitiesList();
     
     activityInput.value = '';
@@ -52,6 +60,8 @@ const showPage = (pageId) => {
 
 const updateActivitiesList = () => {
     const container = document.getElementById('activities-container');
+   
+    if (!container ) return;
     
     if (activities.length === 0) 
     {
@@ -60,28 +70,33 @@ const updateActivitiesList = () => {
     }
     
     container.innerHTML = activities.map(activity => `
+        <div class="flex justify-between w-full">
         <div class="flex items-center gap-4">
-            <div class="bg-blue-500/20 p-3 rounded-full">
-                <i class="fas fa-utensils text-blue-300"></i>
-            </div>
-            <div>
-                <div class="font-bold">${activity.name}</div>
-                <div class="text-sm text-gray-300">${activity.start} - ${activity.end}</div>
-            </div>
+        <div class="bg-blue-500/20 p-3 rounded-full">
+        <i class="fas fa-utensils text-blue-300"></i>
+        </div>
+        <div>
+        <div class="font-bold">${activity.name}</div>
+        <div class="text-sm text-gray-300">${activity.start} - ${activity.end}</div>
+        </div>
         </div>
         <button
-            onclick="removeActivity(${activity.id})"
-            class="text-red-400 hover:text-red-300 p-2 rounded-full hover:bg-red-500/10 transition">
-            <i class="fas fa-trash">sup</i>
+        onclick="removeActivity(${activity.id})"
+        class="text-red-400 hover:text-red-300 p-2 rounded-full hover:bg-red-500/10 transition">
+        <i class="fas fa-trash"></i>
         </button>
+        </div>
     `).join('');
 };
 
 const removeActivity = (id) => {
-    activities = activities.filter(activity => activity.id !== id);
-    updateActivitiesList();
-    document.getElementById('validate-btn').disabled = activities.length === 0;
+  activities = activities.filter(activity => activity.id !== id);
+  localStorage.setItem('activities', JSON.stringify(activities));
+  updateActivitiesList();
+  const validateBtn = document.getElementById('validate-btn');
+  if (validateBtn) validateBtn.disabled = activities.length === 0;
 };
+
 updateActivitiesList();
 
 const validatePlanning = () => {
@@ -230,6 +245,7 @@ const showNotification = (message) => {
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentDate();
     updateCurrentActivity();
+    updateActivitiesList();
 
     clockInterval = setInterval(() => {
         updateCurrentActivity();
