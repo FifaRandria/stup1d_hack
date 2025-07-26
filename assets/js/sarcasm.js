@@ -16,7 +16,7 @@ function showHomerCommentCard(comment) {
 
 
 async function generateHomerAssistantComment(activity, startTime, endTime) {
-  const prompt = `Tu es Ho;er Simpson transformé en assistant IA sarcastique, tu dis une phrase de 5 mot max pour dire aue tu vas surveiller ton activite louche, soit creativemet stupid`;
+  const prompt = `Tu es Ho;er Simpson transformé en assistant IA sarcastique, tu dis une phrase de 5 mot max pour dire aue tu vas surveiller ton activite louche, et dis  je vais te perturber apres, heim hein, soit creativemet stupid`;
 
   try {
     const res = await fetch(
