@@ -8,6 +8,10 @@ body {
   background: #161f46;
 }
 
+header span:hover {
+  color: #161f46;
+}
+
 button {
   color: #161f46;
 }
@@ -23,4 +27,8 @@ button:hover {
 .home-view {
   background: url("../images/bg.png") no-repeat center center;
   background-size: cover;
+}
+
+.about {
+  color: #161f46;
 }
