@@ -332,3 +332,67 @@ function deactivateDarkMode() {
   // Programmer la prochaine activation après 15 secondes
   setTimeout(activateDarkMode, 15000);
 }
+
+
+function createFloatingParticles() {
+  for (let i = 0; i < 15; i++) {
+    setTimeout(() => {
+      const particle = document.createElement("div");
+      particle.style.cssText = `
+        position: fixed;
+        width: 2px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        left: ${Math.random() * 100}vw;
+        top: ${Math.random() * 100}vh;
+        animation: floatParticle ${5 + Math.random() * 10}s linear infinite;
+      `;
+
+      // Animation CSS pour les particules
+      if (!document.getElementById("particle-style")) {
+        const style = document.createElement("style");
+        style.id = "particle-style";
+        style.innerHTML = `
+          @keyframes floatParticle {
+            0% {
+              transform: translateY(0) rotate(0deg);
+              opacity: 0;
+            }
+            10% {
+              opacity: 1;
+            }
+            90% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(-100vh) rotate(360deg);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      document.body.appendChild(particle);
+
+      // Supprimer la particule après l'animation
+      setTimeout(() => {
+        if (particle.parentNode) {
+          particle.remove();
+        }
+      }, 15000);
+    }, i * 200);
+  }
+
+  // Relancer les particules toutes les 30 secondes
+  setTimeout(createFloatingParticles, 30000);
+}
+
+// Démarrer la transformation après 15 secondes
+setTimeout(activateDarkMode, 15000);
+
+setInterval(updateClock, 1000);
+updateClock();
