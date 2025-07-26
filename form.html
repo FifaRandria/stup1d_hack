@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Not o'clock - Gestion du temps</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <link rel="stylesheet" href="./assets/css/tailwind.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="./assets/css/form.css" />
+  </head>
+  <body class="min-h-screen">
+    <div id="homepage">
+      <main class="p-8 lg:p-20">
+        <div class="flex flex-col gap-6 justify-center text-center mb-12">
+          <h1 class="text-3xl lg:text-4xl font-normal">
+            Choisissez vos rendez-vous et moments importants et laissez
+            <span class="font-bold text-blue-300">Not o'clock</span> gérer votre
+            vie
+          </h1>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            Notre système optimisera automatiquement votre emploi du temps en
+            fonction de vos priorités.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:px-20">
+          <div class="form-container p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-6">Ajouter une activité</h2>
+
+            <div class="flex flex-col gap-6">
+              <div>
+                <label for="activity" class="block font-medium mb-2"
+                  >Activité</label
+                >
+                <input
+                  type="text"
+                  id="activity-input"
+                  class="w-full py-3 px-4 rounded-lg border border-gray-600"
+                  placeholder="Pause déjeuner ..."
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="start-time" class="block font-medium mb-2"
+                    >Début</label
+                  >
+                  <input
+                    type="time"
+                    id="start-time"
+                    class="w-full py-3 px-4 rounded-lg border border-gray-600 text-center"
+                  />
+                </div>
+
+                <div>
+                  <label for="end-time" class="block font-medium mb-2">Fin</label>
+                  <input
+                    type="time"
+                    id="end-time"
+                    class="w-full py-3 px-4 rounded-lg border border-gray-600 text-center"
+                  />
+                </div>
+              </div>
+
+              <button
+                onclick="triggerSarcasticJudge()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-3"
+              >
+                <i class="fas fa-plus-circle"></i>
+                <span>Ajouter</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4" id ="activites-list">
+            <h2 class="text-2xl font-semibold mb-6">Vos activités</h2>
+
+            <div
+              id="activities-container" class="activity-item p-5 rounded-lg flex justify-between items-center"
+            >
+
+            </div>
+
+          </div>
+        </div>
+        <div class="w-full flex justify-center mt-16">
+          <button
+            onclick="validatePlanning()" id="validate-btn"
+            class="px-10 py-4 bg-white hover:bg-[#161f46] text-[#161f46] hover:text-white font-bold rounded-full transition-all duration-100 flex items-center gap-2 shadow-lg hover:shadow-xl hover:px-20"
+          >
+            <span>Commencer</span>
+            <i class="fas fa-arrow-right"></i>
+        </button>
+        </div>
+        <div id="sarcasm-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-md shadow-lg text-center">
+          <h2 class="text-xl font-bold mb-4 text-red-600">🤖 IA sarcastique</h2>
+          <p id="sarcasm-text" class="text-gray-800 text-lg mb-6"></p>
+          <button onclick="addActivity();closeSarcasmModal()" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">OK j’assume</button>
+        </div>
+      </div>
+
+      </main>
+    </div>
+    <div id="loading-page" class="hidden min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+      <div class="text-center">
+        <div class="bg-white rounded-xl shadow-lg p-12">
+          <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
+              <h2 class="text-2xl font-bold text-gray-900 mb-4">Optimisation en cours...</h2>
+              <p class="text-gray-600 mb-4">Notre IA analyse votre planning pour une efficacité maximale</p>
+              <div class="text-sm text-gray-500">
+                <div id="loading-text">Initialisation des algorithmes...</div>
+              </div>
+          </div>
+        </div>
+    </div>
+    
+    <script src="./assets/js/form.js"></script>
+    <script src="./assets/js/sarcasm.js"></script>
+  </body>
+</html>
