@@ -83,7 +83,7 @@ const updateActivitiesList = () => {
         <button
         onclick="removeActivity(${activity.id})"
         class="text-red-400 hover:text-red-300 p-2 rounded-full hover:bg-red-500/10 transition">
-        <i class="fas fa-trash">sup</i>
+        <i class="fas fa-trash"></i>
         </button>
         </div>
     `).join('');
