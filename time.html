@@ -129,17 +129,24 @@
     <audio id="homer-sound" src="https://www.myinstants.com/media/sounds/homer-simpson-doh.mp3"></audio>
 
     <script src="./assets/js/time.js"></script>
-    <script>
-      function triggerHomer() {
-        document.getElementById("homer-modal").style.display = "flex";
-        document.body.classList.add("homer-mode");
-        document.getElementById("homer-sound").play();
-      }
+    <script src="./assets/js/time.js"></script>
+<script>
+  function triggerHomer() {
+    document.getElementById("homer-modal").style.display = "flex";
+    document.body.classList.add("homer-mode");
+    document.getElementById("homer-sound").play();
+  }
 
-      function closeHomer() {
-        document.getElementById("homer-modal").style.display = "none";
-        document.body.classList.remove("homer-mode");
-      }
-    </script>
+  function closeHomer() {
+    document.getElementById("homer-modal").style.display = "none";
+    document.body.classList.remove("homer-mode");
+  }
+
+  // Homer perturbe tout toutes les 12 secondes 😈
+  setInterval(() => {
+    triggerHomer();
+  }, 16000); // 12 secondes
+</script>
+
   </body>
 </html>
