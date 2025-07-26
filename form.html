@@ -69,11 +69,13 @@
               </div>
 
               <button
-                onclick="triggerSarcasticJudge()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-3"
-              >
-                <i class="fas fa-plus-circle"></i>
-                <span>Ajouter</span>
-              </button>
+              id="add-btn"
+              onclick="triggerSarcasticJudge()"
+              class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-3"
+            >
+              <i class="fas fa-plus-circle"></i>
+              <span>Ajouter</span>
+            </button>
             </div>
           </div>
 
@@ -99,11 +101,25 @@
         </div>
         <div id="sarcasm-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-xl p-8 max-w-md shadow-lg text-center">
-          <h2 class="text-xl font-bold mb-4 text-red-600">🤖 IA sarcastique</h2>
+          <h2 class="text-xl font-bold mb-4 text-red-600">Assistant AI</h2>
           <p id="sarcasm-text" class="text-gray-800 text-lg mb-6"></p>
           <button onclick="addActivity();closeSarcasmModal()" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">OK j’assume</button>
         </div>
       </div>
+      <!-- Zone de commentaires surprise de Homer -->
+<!-- Assistant Homer toujours visible -->
+<!-- Homer Assistant UI -->
+<div id="homer-surprise" class="fixed top-4 left-4 z-50 bg-yellow-100 text-black rounded-xl shadow-xl p-4 border-2 border-yellow-400 w-[300px] hidden transition-all duration-300 animate-fadeIn">
+  <div class="flex items-center gap-4">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png" alt="Homer" class="w-12 h-12 rounded-full border-2 border-yellow-400" />
+    <div>
+      <h3 class="text-lg font-bold">Homer IA</h3>
+      <p id="homer-comment" class="text-sm text-gray-800">Je t’observe... 🧐</p>
+    </div>
+  </div>
+</div>
+
+
 
       </main>
     </div>
