@@ -17,5 +17,10 @@ button:hover {
   background: #161f46;
   padding-left: 64px;
   padding-right: 64px;
-  box-shadow: black;
+  scale: 105%;
+}
+
+.home-view {
+  background: url("../images/bg.png") no-repeat center center;
+  background-size: cover;
 }
