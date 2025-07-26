@@ -7,3 +7,15 @@ body {
   overflow-x: hidden;
   background: #161f46;
 }
+
+button {
+  color: #161f46;
+}
+
+button:hover {
+  color: white;
+  background: #161f46;
+  padding-left: 64px;
+  padding-right: 64px;
+  box-shadow: black;
+}
