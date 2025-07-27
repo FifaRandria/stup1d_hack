@@ -1,3 +1,5 @@
 pydub
 gtts
 flask
+cors
+flask_cors
