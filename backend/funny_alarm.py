@@ -18,8 +18,8 @@ CORS(app, resources={
 
 phrases = [
     "Il est l'heure de te raser comme tout les mois mec",
-    "Tu veux pas faire caca, ca commence vraiment a sentir",
-    "Tu t'es pas douche pendant 6 mois, il est temps maintenant",
+    "Tu veux pas faire caca, ça commence vraiment a sentir",
+    "Tu t'es pas douché pendant 6 mois, il est temps maintenant",
 ]
 
 @app.route("/audio", methods=["GET"])
