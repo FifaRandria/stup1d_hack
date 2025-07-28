@@ -1,49 +1,59 @@
-from flask import Flask, send_file
+from flask import Flask, send_file, jsonify
 from gtts import gTTS
-from pydub import AudioSegment
 import os
 from io import BytesIO
 import random
-
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-CORS(app)
+# More explicit CORS configuration
+CORS(app, resources={
+    r"/*": {
+        "origins": ["*"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 phrases = [
     "Il est l'heure de te raser comme tout les mois mec",
     "Tu veux pas faire caca, ca commence vraiment a sentir",
     "Tu t'es pas douche pendant 6 mois, il est temps maintenant",
 ]
+
 @app.route("/audio", methods=["GET"])
+@cross_origin()
 def audio():
-    text = random.choice(phrases)
-    tts = gTTS(text=text, lang="fr")
-    tts.save("voix.mp3")
+    try:
+        text = random.choice(phrases)
+        print(f"Generating audio for: {text}")
+        
+        # Create TTS with slow speech
+        tts = gTTS(text=text, lang="fr", slow=True)
+        
+        # Save directly to BytesIO buffer
+        buffer = BytesIO()
+        tts.write_to_fp(buffer)
+        buffer.seek(0)
+        
+        print("Audio generated successfully")
+        
+        return send_file(
+            buffer,
+            as_attachment=False,
+            mimetype="audio/mpeg",
+            download_name="voix.mp3"
+        )
+    
+    except Exception as e:
+        print(f"Error in audio endpoint: {e}")
+        return jsonify({"error": str(e)}), 500
 
-    sound = AudioSegment.from_file("voix.mp3")
-
-    # Réduction de la vitesse de lecture (ralentir la voix)
-    slow_down_factor = 0.9  # < 1.0 pour ralentir
-    new_sample_rate = int(sound.frame_rate * slow_down_factor)
-
-    slowed_sound = sound._spawn(sound.raw_data, overrides={'frame_rate': new_sample_rate})
-    slowed_sound = slowed_sound.set_frame_rate(44100)
-
-    buffer = BytesIO()
-    slowed_sound.export(buffer, format="mp3")
-    buffer.seek(0)
-
-    os.remove("voix.mp3")
-
-    return send_file(
-        buffer,
-        as_attachment=False,
-        mimetype="audio/mpeg",
-        download_name="voix_ralentie.mp3"
-    )
-
+@app.route("/test", methods=["GET"])
+@cross_origin()
+def test():
+    return jsonify({"message": "Server is working!"})
 
 if __name__ == "__main__":
     app.run(debug=True, port=2000, host="0.0.0.0")
